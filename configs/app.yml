@@ -1,0 +1,53 @@
+
+COMMON: &common
+  SECRET_KEY: insecure
+  #SECURITY_POST_LOGIN_VIEW: '/'
+  SECURITY_PASSWORD_HASH: "sha512_crypt"
+  SECURITY_PASSWORD_SALT: "d1a3eb8c9aab32ec19cfda810d2ab351873b5dca4e16e7f57b3c1932113314c8"
+  SECURITY_REGISTERABLE: True
+  SECURITY_CONFIRMABLE: True
+  SECURITY_RECOVERABLE: True
+  SECURITY_POST_REGISTER_VIEW: "thanks"
+  #SECURITY_LOGIN_WITHOUT_CONFIRMATION: True
+  #SECURITY_AUTH_URL: '/authenticate'
+  SQLALCHEMY_DATABASE_URI: "postgresql://postgres:text01@pimp/pimp"
+  ADMIN_CREDENTIALS: 'admin,password'
+  MONGO_URI : 'mongodb://pimp:27017/pimp'
+
+  REDIS_HOST  : "redis://pimp/1"
+  BROKER_URL : 'redis://pimp/0'
+
+
+  SECURITY_RESET_PASSWORD_WITHIN: '3600 seconds'
+  SECURITY_TRACKABLE: True
+
+  SOCIAL_CONNECT_ALLOW_VIEW : "/"
+  MAIL_SERVER: "smtp.gmail.com"
+  MAIL_USERNAME: "rmoskal@mostmedia.com"
+  MAIL_PASSWORD: "holy bombast"
+  MAIL_USE_TLS : True
+  MAIL_SUPPRESS_SEND : False
+  DEFAULT_MAIL_SENDER: "info@itchyknows.com"
+  MAIL_FAIL_SILENTLY : False
+
+
+  SOCIAL_TUMBLR:
+    module: "pimp.oauth_providers.tumblr"
+
+
+  SOCIAL_TWITTER:
+    module: "pimp.oauth_providers.itchy_twitter"
+    consumer_key: 'EVjDQnCBVFnMYcSQoMr2xg'
+    consumer_secret: '62VFxTHg55XqU2A5AFfnEuFQdNWFAoPFSCpUirFyO0'
+
+
+
+DEVELOPMENT: &development
+  <<: *common
+  DEBUG: True
+  MAIL_SUPPRESS_SEND: True
+  SOCIAL_APP_URL: 'http://127.0.0.1'
+
+PRODUCTION: &production
+  <<: *common
+

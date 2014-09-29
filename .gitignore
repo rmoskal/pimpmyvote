@@ -1,0 +1,5 @@
+venv
+*.pyc
+celerybeat-schedule
+*~
+.DS_Store

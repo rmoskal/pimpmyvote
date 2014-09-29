@@ -1,0 +1,32 @@
+{% extends "/layouts/base.html" %}
+{% block title %} - Reconnect!!!{% endblock %}
+{% block content %}
+{% macro show_provider_button(provider_id, display_name, conn) %}
+{% if not conn %}
+<p>Pimp my vote needs access to your {{display_name}} account to post.</p>
+<form action="{{ url_for('social.connect', provider_id=provider_id) }}" method="POST" class="create-connection">
+    <fieldset>
+        <div class="control-group">
+            <button type="submit" class="btn btn-danger"><i class="icon-share icon-white"></i> Connect {{ display_name }}</button>
+        </div>
+    </fieldset>
+</form>
+{% endif %}
+{% endmacro %}
+<div class="page-header">
+    <h1>Hello, {{ current_user.email }}!</h1>
+
+</div>
+<div class="row">
+    <div class="span12">
+        <h2>Connections</h2>
+        <p>Please set up your socal network apps....</p>
+        {{ show_provider_button('facebook', 'Facebook', facebook_conn) }}
+        {{ show_provider_button('twitter', 'Twitter', twitter_conn) }}
+        {{ show_provider_button('tumblr', 'Tumblr', tumblr_conn) }}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% from "_macros.html" import itchy_render_field_with_errors %}
+{% extends "/layouts/base.html" %}
+{% include "security/_messages.html" %}
+{% block title %} - Home{% endblock %}
+{% block content %}
+<div class="txt-c">
+    <h1>Log In</h1>
+</div>
+
+<div class='box-center'>
+
+  <form class="well i-well txt-l" action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+		{{ login_user_form.hidden_tag() }}
+		{{ itchy_render_field_with_errors(login_user_form.email) }}
+		{{ itchy_render_field_with_errors(login_user_form.password) }}
+		<label class="checkbox">
+			 <input id="remember" type="checkbox" name="remember" value="y"> Remember me
+		</label>
+		<p><button type="submit" class="btn btn-primary btn-large">Login</button></p>
+      {% if security.recoverable %}
+          <a href="{{ url_for_security('forgot_password') }}">Forgot password?</a>
+      {% endif %}
+  </form>
+
+</div>
+{% endblock %}
